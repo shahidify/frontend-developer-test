@@ -2,6 +2,16 @@ import React from "react";
 import { shallow, mount } from "enzyme";
 import { App } from "./App";
 
+/*
+Note: Due to my time limitation, I could not write as many test
+for App comnponent as I'd have liked.
+I also got into an issue of Enzyme supporting React Hooks' State.
+I feel I should have used `testing-library` by KCD as 
+it provides easier state manipulation for tests.
+*/
+
+// TODO: Use 'testing-library' by Kent C Dodds instead of Enzyme for Hooks
+
 describe("<App />", () => {
   let wrapper;
   // const setState = jest.fn();
