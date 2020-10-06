@@ -56,7 +56,7 @@ export const App = () => {
   }, [])
 
   return (
-    <div className={classes.root} data-testid>
+    <div className={classes.root} >
       <Grid
         container
         justify="center"
@@ -90,6 +90,7 @@ export const App = () => {
                 variant="contained"
                 color="primary"
                 onClick={loadData}
+                data-testid="btn-load-more"
                 className={classes.margin10}
               >
                 Loading more

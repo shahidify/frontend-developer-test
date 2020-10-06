@@ -16,13 +16,15 @@ const useStyles = makeStyles({
   tableHeader: {
     fontWeight: '700',
   },
-  link: {
-    cursor: 'pointer'
+  sortableHeader: {
+    fontWeight: '700',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
   }
 });
 
-const sortListData = (dataa, isAscOrder) => {
-  debugger;
+export const sortListData = (dataa, isAscOrder) => {
   if(dataa && dataa.length>0) {
     const sortedData = dataa.sort((a, b) =>
     isAscOrder
@@ -44,26 +46,17 @@ export default function UserTable({ data }) {
 
   useEffect(() => {
     if (data && data.length>0) {
-      debugger;
       const sortedData = sortListData(data, isAsc);
       setListData(sortedData);
     }
   }, [data]);
   
-  // useEffect(() => {
-  //   if(listData.length>0) {
-  //     debugger;
-  //     const sortedData = sortListData(listData, isAsc);
-  //     setListData(sortedData);
-  //   } 
-  // }, [isAsc])
-
   return (
     <TableContainer>
-      <Table className={classes.table} aria-label="simple table">
+      <Table className={classes.table} data-testid="table" aria-label="Users table">
         <TableHead>
           <TableRow>
-            <TableCell className={classes.tableHeader, classes.link} onClick={handleSort} >
+            <TableCell data-testid="header-sort" className={classes.sortableHeader} onClick={handleSort} >
               Date
               {isAsc ? (
                 <KeyboardArrowUp color="primary" />
@@ -71,33 +64,32 @@ export default function UserTable({ data }) {
                 <KeyboardArrowDown color="secondary" />
               )}
             </TableCell>
-            <TableCell align="left">User ID</TableCell>
-            <TableCell align="left">Old value</TableCell>
-            <TableCell align="left">New value</TableCell>
+            <TableCell align="left" className={classes.tableHeader}>User ID</TableCell>
+            <TableCell align="left" className={classes.tableHeader}>Old value</TableCell>
+            <TableCell align="left" className={classes.tableHeader}>New value</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
-          {<RenderBody data={listData} order={isAsc} />}
-        </TableBody>
+        {<RenderBody data={listData} order={isAsc} />}
       </Table>
     </TableContainer>
   );
 }
 
-const RenderBody = ({data = [], order}) => {
+export const RenderBody = ({data = [], order}) => {
   if(!data.length) return null;
   const sortedData = sortListData(data, order);
   return (
-    sortedData.map((row) => (
-        <TableRow key={row.id}>
-          <TableCell component="th" scope="row">
-            {format(new Date(row.timestamp), "yyyy-MM-dd")}
-          </TableCell>
-          <TableCell align="left">{row.id}</TableCell>
-
-          <TableCell align="left">{row.diff[0].oldValue}</TableCell>
-          <TableCell align="left">{row.diff[0].newValue}</TableCell>
-        </TableRow>
-      ))
+    <TableBody>
+      {sortedData.map((row) => (
+          <TableRow key={row.id} data-testid="table-row" className="list-row" >
+            <TableCell data-testid="cell-date" align="left">
+              {format(new Date(row.timestamp), "yyyy-MM-dd")}
+            </TableCell>
+            <TableCell data-testid="cell-id" align="left">{row.id}</TableCell>
+            <TableCell data-testid="cell-oldvalue" align="left">{row.diff[0].oldValue}</TableCell>
+            <TableCell data-testid="cell-newvalue" align="left">{row.diff[0].newValue}</TableCell>
+          </TableRow>
+        ))}
+    </TableBody>
   )
 }
