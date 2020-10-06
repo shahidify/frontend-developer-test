@@ -82,15 +82,15 @@ export const App = () => {
               </Typography>
             </Box>
           }
-          {loading && <CircularProgress disableShrink className={classes.margin10} />}
+          {loading && <CircularProgress data-testid="loading-svg" disableShrink  className={classes.margin10} />}
           {!loading && (
             <Box data-testid="load-button-box">
               <Button
+                data-testid="btn-load-more"
                 align="center"
                 variant="contained"
                 color="primary"
                 onClick={loadData}
-                data-testid="btn-load-more"
                 className={classes.margin10}
               >
                 Loading more

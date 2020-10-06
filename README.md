@@ -1,4 +1,5 @@
 # React frontend assignment
+Solution to the Frontend assingnment.
 
 ## Description
 
@@ -11,18 +12,6 @@ Your task is to implement a component or a set of components allowing the users 
 - By default table data should be sorted in reverse chronological order (newest first)
 - Users should be able to sort by the **Date** column only and be able to toggle between reverse chronological and chronological order
 - After fetching new entries, table should be re-sorted according to currently selected sorting order
-
-## Screenshots
-
-### Default state
-![Screen Shot 2020-03-03 at 13 25 01](https://user-images.githubusercontent.com/3663640/75771396-919e6600-5d52-11ea-96db-7a6c5e71c780.png)
-
-### Loading state
-![Screen Shot 2020-03-03 at 13 25 16](https://user-images.githubusercontent.com/3663640/75771400-93682980-5d52-11ea-9439-dfeea61e24a4.png)
-
-### Error state
-![Screen Shot 2020-03-03 at 13 25 09](https://user-images.githubusercontent.com/3663640/75771398-92cf9300-5d52-11ea-8d06-660cd55bb1a1.png)
-
 
 # Setup
 
